@@ -1,0 +1,118 @@
+protocol:
+  design:
+    treatments: 9
+    repetitions: 4
+
+  # activities are defined as actions that change the state of the trial
+  activities:
+    - application
+    - seed_treatment
+
+  # measurements are defined as actions that discretely measure the state of the trial
+  measurements:
+    - phenological_stages
+    - emergence
+    - plant_position
+    - soil_humidity_pct
+    - soil_humidity_score
+    - pods_with_seeds
+    - nodes_per_plant
+    - final_plant_population
+    - lodging
+    - plant_diseases
+    - thousand_seed_weight
+    - seed_humidity
+    - yield
+    - yield_per_timing
+
+activities:
+  application:
+    product: test
+  seed_treatment:
+    product: test
+
+measurements:
+  phenological_stages:
+    samples: 1/plot
+    timings:
+      - emergence
+      - flowering
+      - maturation
+      - harvest
+    ordered: true
+
+  emergence:
+    samples: 1/plot
+    timings:
+      - daily
+    start: 3 dap  # inclusive
+    until: 17 dap  # inclusive
+    ordered: true
+
+  plant_position:
+    samples: 20/plot
+    subsamples: 2
+    timings:
+      - 2023-10-06
+    ordered: true
+
+  soil_humidity_pct:
+    samples: 1/factor1
+    timings:
+      - plantio
+
+  soil_humidity_score:
+    samples: 1/factor1
+    timings:
+      - seeding
+
+  pods_with_seeds:
+    samples: [ 1 seed/plot, 2 seeds/plot, 3 seeds/plot, 4 seeds/plot, 5 seeds/plot ]
+    subsamples: 5
+    timings:
+      - R5
+
+  nodes_per_plant:
+    samples: 10/plot
+    timings:
+      - R5
+
+  final_plant_population:
+    samples: 1/plot
+    timings:
+      - 2023-12-28
+
+  lodging:
+    samples: 1/plot
+    timings:
+      - R5
+
+  plant_diseases:
+    samples: [ target spot/plot, cercospora/plot, septoria/plot, antracnose/plot, mirotecio/plot ]
+    timings:
+      - 2023-11-10
+
+  thousand_seed_weight:
+    samples: 1/plot
+    timings:
+      - harvest
+
+  seed_humidity:
+    samples: 1/plot
+    timings:
+      - harvest
+
+  yield:
+    samples: 1/plot
+    timings:
+      - harvest
+
+  yield_per_timing:
+    samples: 1/plot
+    timings:
+      - 5 dap
+      - 7 dap
+      - 9 dap
+      - 11 dap
+    nullable: true
+        

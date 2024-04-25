@@ -53,8 +53,3 @@ def read_compose(filepath: str) -> Protocol:
         activities=list(starmap(lambda k, a: Activity(name=k, **a), activities.items())),
         measurements=list(starmap(lambda k, m: Measurement(name=k, **m), measurements.items())),
     )
-
-
-if __name__ == "__main__":
-    p = read_compose("../tests/protocol-compose.yml")
-    rich.inspect(p)

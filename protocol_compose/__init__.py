@@ -1,0 +1,1 @@
+from protocol_compose.compose import read_compose

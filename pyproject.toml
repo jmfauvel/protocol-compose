@@ -1,8 +1,8 @@
 [tool.poetry]
 name = "protocol-compose"
 version = "0.1.0"
-description = ""
-authors = ["jmfauvel <joaofauvel@fundacaomt.com.br>"]
+description = "Describe field trial protocols inspired by Docker Compose"
+authors = ["João Murilo Palone Fauvel <joaofauvel@fundacaomt.com.br>"]
 readme = "README.md"
 
 [tool.poetry.dependencies]

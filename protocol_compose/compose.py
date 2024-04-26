@@ -34,6 +34,10 @@ class Protocol(BaseModel):
     activities: list[Activity]
     measurements: list[Measurement]
 
+    @property
+    def plots(self):
+        return self.design.treatments * self.design.repetitions
+
 
 def read_compose(filepath: str) -> Protocol:
     with open(filepath, "r") as f:
@@ -43,13 +47,15 @@ def read_compose(filepath: str) -> Protocol:
     activities: dict = protocolo_spec["activities"]
     measurements: dict = protocolo_spec["measurements"]
 
-    if not all(map(lambda k: k in protocol["activities"], activities.keys())):
+    # checking if all activities/measurements defined as a list[str] in
+    # protocol["measurements"]/protocol["activities"] are also defined in activities/measurment
+    if not all([k in protocol["activities"] for k in activities.keys()]):
         raise KeyError("Activities not defined in protocol")
-    elif not all(map(lambda k: k in protocol["measurements"], measurements.keys())):
+    elif not all([k in protocol["measurements"] for k in measurements.keys()]):
         raise KeyError("Measurements not defined in protocol")
 
     return Protocol(
         design=Design(**protocol["design"]),
-        activities=list(starmap(lambda k, a: Activity(name=k, **a), activities.items())),
-        measurements=list(starmap(lambda k, m: Measurement(name=k, **m), measurements.items())),
+        activities=[Activity(name=k, **v) for k, v in activities.items()],
+        measurements=[Measurement(name=k, **v) for k, v in measurements.items()],
     )

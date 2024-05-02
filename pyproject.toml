@@ -1,6 +1,6 @@
 [tool.poetry]
 name = "protocol-compose"
-version = "0.1.0"
+version = "0.2.0"
 description = "Describe field trial protocols inspired by Docker Compose"
 authors = ["João Murilo Palone Fauvel <joaofauvel@fundacaomt.com.br>"]
 readme = "README.md"
@@ -10,6 +10,7 @@ python = "^3.12"
 pyyaml = "^6.0.1"
 pydantic = "^2.7.1"
 rich = "^13.7.1"
+more-itertools = "^10.2.0"
 
 
 [build-system]

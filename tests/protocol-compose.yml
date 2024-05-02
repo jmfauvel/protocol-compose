@@ -5,114 +5,90 @@ protocol:
 
   # activities are defined as actions that change the state of the trial
   activities:
-    - application
-    - seed_treatment
+    application:
+      product: test
+    seed_treatment:
+      product: test
 
   # measurements are defined as actions that discretely measure the state of the trial
   measurements:
-    - phenological_stages
-    - emergence
-    - plant_position
-    - soil_humidity_pct
-    - soil_humidity_score
-    - pods_with_seeds
-    - nodes_per_plant
-    - final_plant_population
-    - lodging
-    - plant_diseases
-    - thousand_seed_weight
-    - seed_humidity
-    - yield
-    - yield_per_timing
+#    phenological_stages:
+#      samples: 1/factor1
+#      timings:
+#        - emergence
+#        - flowering
+#        - maturation
+#        - harvest
+#      ordered: true
+    emergence:
+      timings:
+        step: 1
+        start: 3 # inclusive
+        until: 17  # inclusive
+      samples: 1/plot
 
-activities:
-  application:
-    product: test
-  seed_treatment:
-    product: test
+    plant_position:
+      timings: 2023-10-06
+      samples: 20/plot
+      subsamples: 2
+      ordered: true
 
-measurements:
-  phenological_stages:
-    samples: 1/plot
-    timings:
-      - emergence
-      - flowering
-      - maturation
-      - harvest
-    ordered: true
+#    soil_humidity_pct:
+#      samples: 1/factor1
+#      timings:
+#        - plantio
+#
+#    soil_humidity_score:
+#      samples: 1/factor1
+#      timings:
+#        - seeding
 
-  emergence:
-    samples: 1/plot
-    timings:
-      - daily
-    start: 3 dap  # inclusive
-    until: 17 dap  # inclusive
-    ordered: true
+    pods_with_seeds:
+      timings: R5
+      samples:
+        "1 seed": 5/plot
+        "2 seeds": 5/plot
+        "3 seeds": 5/plot
+        "4 seeds": 5/plot
+        "5 seeds": 5/plot
 
-  plant_position:
-    samples: 20/plot
-    subsamples: 2
-    timings:
-      - 2023-10-06
-    ordered: true
+    nodes_per_plant:
+      timings: R5
+      samples: 10/plot
 
-  soil_humidity_pct:
-    samples: 1/factor1
-    timings:
-      - plantio
+    final_plant_population:
+      timings: 2023-12-28
+      samples: 1/plot
 
-  soil_humidity_score:
-    samples: 1/factor1
-    timings:
-      - seeding
+    lodging:
+      timings: R5
+      samples: 1/plot
 
-  pods_with_seeds:
-    samples: [ 1 seed/plot, 2 seeds/plot, 3 seeds/plot, 4 seeds/plot, 5 seeds/plot ]
-    subsamples: 5
-    timings:
-      - R5
+    plant_diseases:
+      timings: 2023-11-10
+      samples:
+        "target spot": 1/plot
+        "cercospora": 1/plot
+        "septoria": 1/plot
+        "antracnose": 1/plot
+        "mirotecio": 1/plot
 
-  nodes_per_plant:
-    samples: 10/plot
-    timings:
-      - R5
+    thousand_seed_weight:
+      timings: harvest
+      samples: 1/plot
 
-  final_plant_population:
-    samples: 1/plot
-    timings:
-      - 2023-12-28
+    seed_humidity:
+      timings: harvest
+      samples: 1/plot
 
-  lodging:
-    samples: 1/plot
-    timings:
-      - R5
+    yield:
+      timings: harvest
+      samples: 1/plot
 
-  plant_diseases:
-    samples: [ target spot/plot, cercospora/plot, septoria/plot, antracnose/plot, mirotecio/plot ]
-    timings:
-      - 2023-11-10
-
-  thousand_seed_weight:
-    samples: 1/plot
-    timings:
-      - harvest
-
-  seed_humidity:
-    samples: 1/plot
-    timings:
-      - harvest
-
-  yield:
-    samples: 1/plot
-    timings:
-      - harvest
-
-  yield_per_timing:
-    samples: 1/plot
-    timings:
-      - 5 dap
-      - 7 dap
-      - 9 dap
-      - 11 dap
-    nullable: true
-        
+    yield_per_timing:
+      timings:
+        - 5 dap
+        - 7 dap
+        - 9 dap
+        - 11 dap
+      samples: 1/plot
